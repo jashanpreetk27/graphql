@@ -16,7 +16,30 @@ const mailResolver = {
         return null;
       }
     },
-  },
+ 
+updateMail: async (_, { input }) => {
+  const { id, sender, recipient, subject, body } = input;
+  try {
+    const updatedMail = await Mail.findByIdAndUpdate(
+      id,
+      { sender, recipient, subject, body },
+      { new: true }
+    );
+    return updatedMail;
+  } catch (err) {
+    return null;
+  }
+},
+deleteMail: async (_, { id }) => {
+  try {
+    const deletedMail = await Mail.findByIdAndDelete(id);
+    return deletedMail;
+  } catch (err) {
+    return null;
+  }
+},
+},
 };
+
 
 module.exports = mailResolver;

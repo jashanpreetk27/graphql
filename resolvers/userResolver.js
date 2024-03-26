@@ -17,7 +17,7 @@ const userResolver = {
       const newUser = await User.create({
         username,
         email,
-        password: hashedPassword,
+        password: hashedPassword, 
       });
 
       const token = jwt.sign({ userId: newUser._id }, "jashan ");
